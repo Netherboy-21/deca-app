@@ -31,10 +31,12 @@ class UsersController < ApplicationController
     if request.request_method == "GET"
       @user = User.new
     elsif request.request_method == "POST"
-      if User.where(email: params[:email],password: params[:password]).exists?
-        @user = User.find_by(email: params[:email])
+      if User.where(email: params[:user][:email], password: params[:user][:password]).exists?
+        @user = User.find_by(email: params[:user][:email])
         session[:user_id] = @user.id
         redirect_to root_path
+      else
+        redirect_to '/sign_up'
       end
     end
   end
@@ -42,9 +44,5 @@ class UsersController < ApplicationController
   private
   def user_params
     params.expect(user: [ :username, :password, :email ])
-  end
-
-  def login_params
-    params.expect(user: [ :password, :email ])
   end
 end
