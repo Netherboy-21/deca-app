@@ -1,0 +1,25 @@
+<h1>Log in</h1>
+
+<%= form_with model:@user do |form| %>
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+    <div>
+      <% @user.errors.full_messages_for(:email).each do |message| %>
+        <%= message %>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password %>
+    <div>
+      <% @user.errors.full_messages_for(:password).each do |message| %>
+        <%= message %>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
