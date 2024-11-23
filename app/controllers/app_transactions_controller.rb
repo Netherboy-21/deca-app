@@ -1,11 +1,16 @@
-class TransactionsController < ApplicationController
+class AppTransactionsController < ApplicationController
   def index
     if session[:user_id].nil?
       redirect_to root_path, alert: "You must be logged in to view this page"
     end
     @user = User.find(session[:user_id])
     @app_transactions = AppTransaction.where(user: session[:user_id]).order(date: :desc)
-    @balance = @app_transactions.sum(:amount)
+    @balance = 0
+    @balances = {}
+    AppTransaction.where(user: session[:user_id]).order(:date).each do |transaction|
+      @balance += transaction.amount
+      @balances[transaction.date.strftime("%F")] = @balance.to_i
+    end
   end
 
   def new

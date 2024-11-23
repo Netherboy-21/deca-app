@@ -1,6 +1,6 @@
 <h1>Hi, <%= @user.username %>!</h1>
 <h2>Your balance: $<%= @balance %></h2>
-
+<%= line_chart @balances  %>
 <h3>Recent transactions</h3>
 <% @app_transactions.each do |transaction| %>
   <div>

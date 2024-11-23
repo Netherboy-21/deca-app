@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "users#home"
 
   resources :users do
-    resources :transactions
+    resources :app_transactions
   end
 
   get "/sign_up", to: "users#new"
