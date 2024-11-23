@@ -4,13 +4,8 @@ class UsersController < ApplicationController
     if session[:user_id].nil?
       redirect_to login_path
     else
-      @id = session[:user_id]
-      @user = User.find(session[:user_id])
+      redirect_to user_app_transactions_path User.find(session[:user_id])
     end
-  end
-
-  def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -36,9 +31,14 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect_to root_path
       else
-        redirect_to '/sign_up'
+        redirect_to "/sign_up"
       end
     end
+  end
+
+  def logout
+    session[:user_id] = nil
+    redirect_to "/"
   end
 
   private

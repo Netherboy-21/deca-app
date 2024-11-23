@@ -1,0 +1,4 @@
+<h1><%= @transaction.summary %>: $<%= @transaction.amount %></h1>
+<h2><%= @transaction.date.to_s %></h2>
+<p><%= @transaction.details %></p>
+<%= link_to "All transactions", user_app_transactions_path(session[:user_id]) %>
