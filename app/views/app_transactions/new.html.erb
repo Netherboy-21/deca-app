@@ -15,7 +15,11 @@
   </div>
   <div>
     <%= form.label :category %><br>
-    <%= form.text_field :category %>
+    <select id="category">
+      <% @categories.each do |category| %>
+        <option value="<%= category.name %>"><%= category.name %></option>
+      <% end %>
+    </select>
   </div>
   <div>
     <%= form.label :date %><br>

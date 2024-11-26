@@ -1,0 +1,19 @@
+body {
+    background: #ffeedd;
+}
+#login {
+    background: rgba(255, 238, 221, 0.7);
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+* {
+    font-family: sans-serif;
+}
+h1, label{
+    display: inline-block;
+}
+div {
+    display: block;
+
+}

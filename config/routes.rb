@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :app_transactions
+    resources :categories
   end
 
   get "/sign_up", to: "users#new"
