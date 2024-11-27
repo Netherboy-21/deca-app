@@ -8,6 +8,22 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <style>
+        body {
+            margin: 0;
+        }
+        header {
+            height: 30px;
+            background-color: #ffbc1d;
+            display: flex;
+            justify-content: space-evenly;
+            text-align: center;
+        }
+        #content {
+            margin: 5px;
+        }
+    </style>
+
     <%= yield :head %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
@@ -24,6 +40,23 @@
   </head>
 
   <body>
+
+  <header>
+
+    <% if session[:user_id].nil? %>
+      <%= link_to "Home", root_path %>
+      <%= link_to "Log in", login_path %>
+      <%= link_to "Sign up", sign_up_path %>
+    <% else %>
+      <%= link_to "Transactions", user_app_transactions_path(session[:user_id])  %>
+      <%= link_to "Categories", user_categories_path(session[:user_id]) %>
+      <%= link_to "Log out", logout_path %>
+    <% end %>
+
+  </header>
+
+  <div id="content">
     <%= yield %>
+  </div>
   </body>
 </html>
