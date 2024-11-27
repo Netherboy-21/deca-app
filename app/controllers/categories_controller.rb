@@ -1,4 +1,9 @@
 class CategoriesController < ApplicationController
+  def index
+    @user = session[:user_id]
+    @categories = Category.where(user: @user)
+  end
+
   def new
     @user = User.find(params[:user_id])
   end

@@ -1,3 +1,5 @@
+<%= render "users/header" %>
+
 <h1>Log a transaction</h1>
 
 <%= form_with model: [ @user, @user.app_transactions.build ] do |form| %>
