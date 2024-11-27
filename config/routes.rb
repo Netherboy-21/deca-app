@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :categories
   end
 
+  resource "charts" do
+    get "/balances", to: "charts#balances"
+  end
+
   get "/sign_up", to: "users#new"
   get "/login", to: "users#login"
   post "/login", to: "users#login"

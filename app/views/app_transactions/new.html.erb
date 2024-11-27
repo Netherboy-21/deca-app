@@ -15,7 +15,7 @@
   </div>
   <div>
     <%= form.label :category %><br>
-    <select id="category">
+    <select name="app_transaction[category]" id="app_transaction_category">
       <% @categories.each do |category| %>
         <option value="<%= category.name %>"><%= category.name %></option>
       <% end %>

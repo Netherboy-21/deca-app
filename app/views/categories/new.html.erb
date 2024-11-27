@@ -1,14 +1,9 @@
 <h1>New category</h1>
 
-<%= form_with model: @category do |form| %>
+<%= form_with model: [ @user, @user.categories.build ] do |form| %>
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
-    <div>
-      <% @category.errors.full_messages_for(:name).each do |message| %>
-        <%= message %>
-      <% end %>
-    </div>
   </div>
   <div>
     <%= form.submit %>
