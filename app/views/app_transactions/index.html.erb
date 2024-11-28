@@ -1,24 +1,7 @@
-<h1>Hi, <%= @user.username %>!</h1>
+<h1>Transactions</h1>
 
-<h2>Your balance: $<%= @balance %></h2>
+<button id="new">+ New transaction</button>
 
-<button id="new" class="new">
-  + New transaction
-</button>
-
-
-
-<!--Use Chartkick for graphs-->
-<% unless @transactions.nil? %>
-  <h3>Balance over time</h3>
-  <%=  line_chart balances_charts_path, library: {backgroundColor: "transparent"}, xtitle: "Time", ytitle: "Balance", prefix: "$", thousands: ",", curve: false  %>
-
-  <h3>Expenses by category</h3>
-  <%=  pie_chart categories_expenses_charts_path, library: {backgroundColor: "transparent"}, class: "pie-chart", prefix: "$", thousands: ",", label: "Expenses by category"  %>
-
-  <h3>Income by category</h3>
-  <%= pie_chart categories_income_charts_path, library: { backgroundColor: "transparent" }, class: "pie-chart", prefix: "$", thousands: ",", label: "Income by category" %>
-<% end %>
 <!--Loop through each transactions-->
 <h3>Recent transactions</h3>
 <% @transactions.each do |transaction| %>
