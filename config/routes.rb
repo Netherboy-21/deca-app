@@ -9,11 +9,12 @@ Rails.application.routes.draw do
 
   resource "charts" do
     get "/balances", to: "charts#balances"
+    get "/categories", to: "charts#categorized_expenses"
   end
 
   get "/sign_up", to: "users#new"
-  get "/login", to: "users#login"
-  post "/login", to: "users#login"
+  get "/login", to: "users#login_get"
+  post "/login", to: "users#login_post"
   get "/logout", to: "users#logout"
 
 

@@ -13,4 +13,17 @@ class ChartsController < ApplicationController
     # Return json for chart
     render json: @balances
   end
+
+  def categorized_expenses
+    @transactions = AppTransaction.where(user: session[:user_id])
+    @categorized = Hash.new
+    @transactions.each do |transaction|
+      if !@categorized[transaction.category].nil?
+        @categorized[transaction.category] += transaction.amount
+      else
+        @categorized[transaction.category] = transaction.amount
+      end
+    end
+    render json: @categorized
+  end
 end

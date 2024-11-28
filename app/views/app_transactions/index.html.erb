@@ -4,6 +4,8 @@
 <!--Use Chartkick for graph-->
 <%= line_chart balances_charts_path, library: {backgroundColor: "transparent"}  %>
 
+<%= pie_chart categories_charts_path, library: {backgroundColor: "transparent"} %>
+
 <h3>Recent transactions</h3>
 
 <% @transactions.each do |transaction| %>

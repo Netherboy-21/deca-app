@@ -22,20 +22,19 @@ class UsersController < ApplicationController
     end
   end
 
-  def login
-    if request.request_method == "GET"
-      @user = User.new
-    elsif request.request_method == "POST"
-      if User.where(email: params[:user][:email], password: params[:user][:password]).exists?
-        @user = User.find_by(email: params[:user][:email])
-        session[:user_id] = @user.id
-        redirect_to root_path
-      else
-        redirect_to "/sign_up"
-      end
-    end
+  def login_get
+    @user = User.new
   end
 
+  def login_post
+    if User.where(login_params).exists?
+      @user = User.find_by(login_params)
+      session[:user_id] = @user.id
+      redirect_to root_path
+    else
+      redirect_to "/sign_up"
+    end
+  end
   def logout
     session[:user_id] = nil
     redirect_to "/"
@@ -44,5 +43,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.expect(user: [ :username, :password, :email ])
+  end
+
+  private
+  def login_params
+    params.expect(user: [ :password, :email ])
   end
 end

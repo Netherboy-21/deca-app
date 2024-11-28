@@ -19,8 +19,13 @@ class AppTransactionsController < ApplicationController
 
   def create
     @user = User.find(session[:user_id])
-    @app_transaction = @user.app_transactions.create(transaction_params)
-    redirect_to user_app_transactions_path @user
+    @app_transaction = @user.app_transactions.new(transaction_params)
+    if @app_transaction.save
+      redirect_to user_app_transactions_path @user
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 
   def show
