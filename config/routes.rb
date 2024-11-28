@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
   resource "charts" do
     get "/balances", to: "charts#balances"
-    get "/categories", to: "charts#categorized_expenses"
+    get "/categories_expenses", to: "charts#categorized_expenses"
+    get "/categories_income", to: "charts#categorized_income"
   end
 
   get "/sign_up", to: "users#new"

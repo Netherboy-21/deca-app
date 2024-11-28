@@ -8,7 +8,7 @@ class AppTransactionsController < ApplicationController
     @user = User.find(session[:user_id])
     @transactions = AppTransaction.where(user: session[:user_id]).order(date: :desc)
     @categories = Category.where(user: @user).exists? ? Category.where(user: @user) : []
-    @balance = @transactions.sum(:amount)
+    @balance = @transactions.where(is_income: true).sum(:amount) - @transactions.where(is_income: false).sum(:amount)
   end
 
 
@@ -34,6 +34,6 @@ class AppTransactionsController < ApplicationController
 
   private
   def transaction_params
-    params.expect(app_transaction: [ :amount, :category, :date, :summary, :details ])
+    params.expect(app_transaction: [ :amount, :category, :date, :summary, :details, :is_income  ])
   end
 end

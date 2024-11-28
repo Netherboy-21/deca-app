@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_26_155451) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_28_184229) do
   create_table "app_transactions", force: :cascade do |t|
     t.float "amount"
     t.string "category"
@@ -20,6 +20,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_26_155451) do
     t.datetime "updated_at", null: false
     t.string "summary"
     t.text "details"
+    t.boolean "is_income"
     t.index ["user_id"], name: "index_app_transactions_on_user_id"
   end
 

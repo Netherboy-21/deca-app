@@ -10,6 +10,13 @@
     <%= form.textarea :details %>
   </div>
   <div>
+    <%= form.label :is_income %><br>
+    <%= form.radio_button :is_income, "true", value: true %>
+    <%= form.label :true, "Income" %><br>
+    <%= form.radio_button :is_income, "false", value: false %>
+    <%= form.label :false, "Expense" %><br>
+  </div>
+  <div>
     <%= form.label :amount %><br>
     <%= form.number_field :amount %>
   </div>

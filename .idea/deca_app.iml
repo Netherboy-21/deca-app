@@ -146,6 +146,7 @@
     <orderEntry type="library" scope="PROVIDED" name="xpath (v3.2.0, ruby-3.3.6-p108) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="yaml_db (v0.7.0, ruby-3.3.6-p108) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zeitwerk (v2.7.1, ruby-3.3.6-p108) [gem]" level="application" />
+    <orderEntry type="library" name="@types/jquery" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />

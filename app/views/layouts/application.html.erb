@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script>
+      // Code for new category and transaction buttons
+      $(document).ready(() => {
+          $('#new').on('click',() => {
+              window.location.replace(window.location.href + '/new')
+          })
+      })
+    </script>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -25,6 +36,12 @@
         .nav-link {
             text-align: center;
             color: white;
+        }
+        #new {
+            background: dodgerblue;
+            color: white;
+            font-size: medium;
+            border-radius: 5px;
         }
     </style>
 
