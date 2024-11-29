@@ -1,8 +1,10 @@
+<!--Display transaction information-->
 <h1><%= @transaction.summary %>: $<%= @transaction.amount %></h1><br>
 <b><%= @transaction.category %></b>
 <em><%= @transaction.date.strftime("%F") %></em><br>
 <p><%= @transaction.details %></p>
-<%= turbo_include_tags %>
+
+<!--CRUD links-->
 <ul>
   <li>
     <%= link_to "Edit", edit_user_app_transaction_path(session[:user_id],@transaction.id) %>
@@ -14,3 +16,6 @@
     } %>
   </li>
 </ul>
+
+<!--I don't know what this does but if I don't have it the delete function breaks-->
+<%= turbo_include_tags %>

@@ -20,6 +20,7 @@ class AppTransactionsController < ApplicationController
   def new
     @user = User.find(session[:user_id])
     @categories = Category.where(user: @user).exists? ? Category.where(user: @user) : []
+    @transaction = @user.app_transactions.build
   end
 
   def create
