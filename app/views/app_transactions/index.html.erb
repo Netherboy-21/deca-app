@@ -1,28 +1,21 @@
 <h1>Transactions</h1><br>
 
-<button id="new">+ New transaction</button>
+<%= button_to "+ New transaction", new_user_app_transaction_path, class: "new", method: :get%>
 
-<!--Loop through each transactions-->
+
+<!-- Loop through each transactions -->
 <h3>Recent transactions</h3>
 <table>
   <!--Column headers-->
-  <th>
-    Date
-  </th>
-  <th>
-    Summary
-  </th>
-  <th>
-    Amount
-  </th>
-  <th>
-    Category
-  </th>
-  <!--Table body-->
+  <th>Date</th>
+  <th>Summary</th>
+  <th>Amount</th>
+  <th>Category</th>
+  <!-- Dynamically generate table body -->
   <% @transactions.each do |transaction| %>
     <tr>
       <td>
-        <%= transaction.date %>
+        <%= transaction.date.strftime("%F") %>
       </td>
       <td>
         <%= link_to transaction.summary, user_app_transaction_path(session[:user_id],transaction.id) %>

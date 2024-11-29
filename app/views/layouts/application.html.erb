@@ -7,15 +7,6 @@
     <meta name="mobile-web-app-capable" content="yes">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-    <script>
-      // Code for new category and transaction buttons
-      $(document).ready(() => {
-          $('#new').on('click',() => {
-              window.location.replace(window.location.href + '/new')
-          })
-      })
-    </script>
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -37,7 +28,7 @@
             text-align: center;
             color: white;
         }
-        #new {
+        .new {
             background: dodgerblue;
             color: white;
             font-size: medium;

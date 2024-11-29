@@ -1,3 +1,5 @@
+<!-- Form partial for creating and editing transactions -->
+
 <%= form_with model: [@user, @transaction], local: true do |form| %>
   <div>
     <%= form.label :summary %><br>
@@ -21,20 +23,12 @@
   <div>
     <%= form.label :category %><br>
     <%= form.select :category, @categories.collect { |category| [category.name] } %>
-    <!--
-    <select name="app_transaction[category]" id="app_transaction_category">
-      <% @categories.each do |category| %>
-        <option value="<%= category.name %>"><%= category.name %></option>
-      <% end %>
-      <option value="Unsorted">Unsorted</option>
-    </select>
-    -->
   </div>
   <div>
     <%= form.label :date %><br>
     <%= form.date_field :date %>
   </div>
   <div>
-    <input type="submit" name="commit" value="Save transaction" data-disable-with="Save transaction">
+    <%= form.submit "Save transaction" %>
   </div>
 <% end %>

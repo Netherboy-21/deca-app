@@ -1,6 +1,6 @@
 <h1>Your categories</h1><br>
 
-<button id="new">+ New Category</button>
+<%= button_to "+ New category", new_user_category_path, class: "new", method: :get %>
 
 <% @categories.each do |category| %>
   <div>
