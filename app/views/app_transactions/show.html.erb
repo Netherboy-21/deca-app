@@ -1,4 +1,16 @@
-<h1><%= @transaction.summary %>: $<%= @transaction.amount %></h1>
-<h2><%= @transaction.date.to_s %></h2>
+<h1><%= @transaction.summary %>: $<%= @transaction.amount %></h1><br>
+<b><%= @transaction.category %></b>
+<em><%= @transaction.date.strftime("%F") %></em><br>
 <p><%= @transaction.details %></p>
-<%= link_to "All transactions", user_app_transactions_path(session[:user_id]) %>
+<%= turbo_include_tags %>
+<ul>
+  <li>
+    <%= link_to "Edit", edit_user_app_transaction_path(session[:user_id],@transaction.id) %>
+  </li>
+  <li>
+    <%= link_to "Delete", [ @transaction.user, @transaction ], data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } %>
+  </li>
+</ul>

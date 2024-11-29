@@ -1,11 +1,38 @@
-<h1>Transactions</h1>
+<h1>Transactions</h1><br>
 
 <button id="new">+ New transaction</button>
 
 <!--Loop through each transactions-->
 <h3>Recent transactions</h3>
-<% @transactions.each do |transaction| %>
-  <div>
-    <h5><%= link_to transaction.summary, user_app_transaction_path(session[:user_id],transaction.id) %></h5>
-  </div>
+<table>
+  <!--Column headers-->
+  <th>
+    Date
+  </th>
+  <th>
+    Summary
+  </th>
+  <th>
+    Amount
+  </th>
+  <th>
+    Category
+  </th>
+  <!--Table body-->
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <td>
+        <%= transaction.date %>
+      </td>
+      <td>
+        <%= link_to transaction.summary, user_app_transaction_path(session[:user_id],transaction.id) %>
+      </td>
+      <td>
+        <%= ( transaction.is_income ? "$" : "-$" ) + transaction.amount.to_s %>
+      </td>
+      <td>
+        <%= transaction.category %>
+      </td>
+    </tr>
 <% end %>
+</table>

@@ -32,6 +32,30 @@ class AppTransactionsController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(session[:user_id])
+    @transaction = @user.app_transactions.find(params[:id])
+    @categories = @user.categories.where(user: @user)
+  end
+
+  def update
+    @user = User.find(session[:user_id])
+    @transaction = @user.app_transactions.find(params[:id])
+
+    if @transaction.update(transaction_params)
+      redirect_to user_app_transactions_path @user
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @user = User.find(session[:user_id])
+    @transaction = @user.app_transactions.find(params[:id])
+    @transaction.destroy
+    redirect_to user_app_transactions_path @user
+  end
+
   def show
     @transaction = AppTransaction.find(params[:id])
   end

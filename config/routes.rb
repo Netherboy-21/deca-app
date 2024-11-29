@@ -4,9 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :app_transactions do
-      collection do
-        get :report
-      end
+      get :report, on: :collection
     end
     resources :categories
   end
