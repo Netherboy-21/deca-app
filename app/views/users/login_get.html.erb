@@ -1,17 +1,15 @@
-<div id="login">
 <h1>Log in</h1>
 
-<form action="/login" method="post">
+<%= form_with model: @user, url: '/login' do |form| %>
   <div>
-    <label for="email">Email</label><br>
-    <input type="email" name="user[email]" id="email">
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
   </div>
   <div>
-    <label for="password">Password</label><br>
-    <input type="password" name="user[password]" id="password">
+    <%= form.label :password %><br>
+    <%= form.password_field :password %>
   </div>
   <div>
-    <input type="submit" name="commit">
+    <%= form.submit "Log in" %>
   </div>
-</form>
-</div>
+<% end %>
