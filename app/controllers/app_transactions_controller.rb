@@ -25,9 +25,9 @@ class AppTransactionsController < ApplicationController
 
   def create
     @user = User.find(session[:user_id])
-    @app_transaction = @user.app_transactions.new(transaction_params)
+    @app_transaction = @user.app_transactions.new(transaction_params_with_user_id)
     if @app_transaction.save
-      redirect_to user_app_transactions_path @user
+      redirect_to app_transactions_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,8 +43,8 @@ class AppTransactionsController < ApplicationController
     @user = User.find(session[:user_id])
     @transaction = @user.app_transactions.find(params[:id])
 
-    if @transaction.update(transaction_params)
-      redirect_to user_app_transactions_path @user
+    if @transaction.update(transaction_params_with_user_id)
+      redirect_to app_transactions_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,7 +54,7 @@ class AppTransactionsController < ApplicationController
     @user = User.find(session[:user_id])
     @transaction = @user.app_transactions.find(params[:id])
     @transaction.destroy
-    redirect_to user_app_transactions_path @user
+    redirect_to app_transactions_path
   end
 
   def show
@@ -62,7 +62,10 @@ class AppTransactionsController < ApplicationController
   end
 
   private
-  def transaction_params
-    params.expect(app_transaction: [ :amount, :category, :date, :summary, :details, :is_income  ])
-  end
+    def transaction_params # Data received from the form
+      params.expect(app_transaction: [ :amount, :category, :date, :summary, :details, :is_income  ])
+    end
+    def transaction_params_with_user_id # Data from form with the user id
+      transaction_params.merge(user_id: session[:user_id])
+    end
 end

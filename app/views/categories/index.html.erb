@@ -1,6 +1,6 @@
 <h1>Your categories</h1><br>
 
-<%= button_to "+ New category", new_user_category_path, class: "new", method: :get %>
+<%= button_to "+ New category", new_category_path, class: "new", method: :get %>
 
 <!-- Generate table -->
 <table>
@@ -10,10 +10,10 @@
       <%= category.name %>
     </td>
     <td>
-      <%= link_to "Edit", edit_user_category_path(@user,category.id) %>
+      <%= link_to "Edit", edit_category_path(category) %>
     </td>
     <td>
-      <%= link_to "Delete", user_category_path(@user,category.id), data: {
+      <%= link_to "Delete", category, data: {
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"
       } %>

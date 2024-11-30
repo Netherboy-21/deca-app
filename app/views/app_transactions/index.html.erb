@@ -1,6 +1,6 @@
 <h1>Transactions</h1><br>
 
-<%= button_to "+ New transaction", new_user_app_transaction_path, class: "new", method: :get%>
+<%= button_to "+ New transaction", new_app_transaction_path, class: "new", method: :get%>
 
 <%= stylesheet_link_tag 'transactions' %>
 
@@ -12,6 +12,7 @@
   <th>Summary</th>
   <th>Amount</th>
   <th>Category</th>
+
   <!-- Dynamically generate table body -->
   <% @transactions.each do |transaction| %>
     <tr>
@@ -19,7 +20,7 @@
         <%= transaction.date.strftime("%F") %>
       </td>
       <td>
-        <%= link_to transaction.summary, user_app_transaction_path(session[:user_id],transaction.id) %>
+        <%= link_to transaction.summary, transaction %>
       </td>
       <td>
         <%= ( transaction.is_income ? "$" : "-$" ) + transaction.amount.to_s %>
@@ -28,5 +29,5 @@
         <%= transaction.category %>
       </td>
     </tr>
-<% end %>
+  <% end %>
 </table>

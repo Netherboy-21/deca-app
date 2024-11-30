@@ -7,10 +7,10 @@
 <!-- Generate CRUD links -->
 <ul>
   <li>
-    <%= link_to "Edit", edit_user_app_transaction_path(session[:user_id],@transaction.id) %>
+    <%= link_to "Edit", edit_app_transaction_path(@transaction) %>
   </li>
   <li>
-    <%= link_to "Delete", [ @transaction.user, @transaction ], data: {
+    <%= link_to "Delete", @transaction, data: {
       turbo_method: :delete,
       turbo_confirm: "Are you sure?"
     } %>

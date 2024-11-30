@@ -2,14 +2,13 @@ Rails.application.routes.draw do
 
   root "users#home"
 
-  resources :users do
-    resources :app_transactions do
-      get :report, on: :collection
-    end
-    resources :categories
-  end
+  resources :users
+  resources :app_transactions
+  resources :categories
 
-  resource "charts" do
+  get "/report", to: "app_transactions#report"
+
+  resource :charts do
     collection do
       get :balances
       get :categorized_expenses

@@ -1,4 +1,6 @@
-<%= form_with model: [ @user, @category ], local: true do |form| %>
+<!-- Form partial for creating and editing categories -->
+
+<%= form_with model: @category, local: true do |form| %>
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>

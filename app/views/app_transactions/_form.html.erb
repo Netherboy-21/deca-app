@@ -1,6 +1,6 @@
 <!-- Form partial for creating and editing transactions -->
 
-<%= form_with model: [@user, @transaction], local: true do |form| %>
+<%= form_with model: @transaction, local: true do |form| %>
   <div>
     <%= form.label :summary %><br>
     <%= form.text_field :summary %>
@@ -10,7 +10,7 @@
     <%= form.textarea :details %>
   </div>
   <div>
-    <%= form.label :is_income %><br>
+    <%= form.label :is_income, "Transaction type" %><br>
     <%= form.radio_button :is_income, "true", value: true %>
     <%= form.label :true, "Income" %><br>
     <%= form.radio_button :is_income, "false", value: false %>
@@ -18,7 +18,7 @@
   </div>
   <div>
     <%= form.label :amount %><br>
-    <%= form.number_field :amount %>
+    <%= form.number_field :amount, step: 0.01  %>
   </div>
   <div>
     <%= form.label :category %><br>

@@ -1,15 +1,20 @@
 <h1>Hi, <%= @user.username %>!</h1>
 
-<h2>Your balance: $<%= @balance %></h2>
+<h2>Your balance: $<%= '%.2f' % @balance.round(2) %></h2>
 
-<!--Use Chartkick for graphs-->
-<% unless @transactions.nil? %>
+
+<% if @transactions == [] %>
+  <!-- Only display this is there aren't any transactions-->
+  <h3>You haven't logged any transactions!</h3>
+  <%= link_to "Log a transaction", new_app_transaction_path %>
+<%  else %>
+  <!--Use Chartkick for graphs-->
   <h3>Balance over time</h3>
-  <%=  line_chart balances_charts_path, library: {backgroundColor: "transparent"}, xtitle: "Time", ytitle: "Balance", prefix: "$", thousands: ",", curve: false  %>
+  <%= line_chart balances_charts_path, library: {backgroundColor: "transparent"}, xtitle: "Time", ytitle: "Balance", prefix: "$", thousands: ",", curve: false   %>
 
   <h3>Expenses by category</h3>
-  <%=  pie_chart categorized_expenses_charts_path, library: {backgroundColor: "transparent"}, class: "pie-chart", prefix: "$", thousands: ",", label: "Expenses by category"  %>
+  <%= pie_chart categorized_expenses_charts_path, library: {backgroundColor: "transparent"}, class: "pie-chart", prefix: "$", thousands: ",", label: "Expenses by category"   %>
 
   <h3>Income by category</h3>
   <%= pie_chart categorized_income_charts_path, library: { backgroundColor: "transparent" }, class: "pie-chart", prefix: "$", thousands: ",", label: "Income by category" %>
-<% end %>
+<%  end %>
