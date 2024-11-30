@@ -9,40 +9,7 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <style>
-        body {
-            margin: 0;
-        }
-        header {
-            height: 30px;
-            background-color: #ffbc1d;
-            display: flex;
-            justify-content: space-evenly;
-            text-align: center;
-        }
-        #content {
-            margin: 5px;
-        }
-        .nav-link {
-            text-align: center;
-            color: white;
-        }
-        .new {
-            background: dodgerblue;
-            color: white;
-            font-size: medium;
-            border-radius: 5px;
-        }
-        td,th {
-            border: 1px solid black;
-            margin: 2px;
-            padding: 1px;
-        }
-        table {
-            border: 1px solid black;
-        }
-    </style>
+    <%= turbo_include_tags %>
 
     <%= yield :head %>
 

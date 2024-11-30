@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
+    @category = @user.categories.build
   end
 
   def create
@@ -18,8 +19,23 @@ class CategoriesController < ApplicationController
     end
   end
 
-  private
-  def category_params
-    params.expect(category: [ :name ])
+  def edit
+    @user = User.find(session[:user_id])
+    @category = Category.find(params[:id])
   end
+
+  def update
+    @user = User.find(session[:user_id])
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to user_categories_path(params[:user_id])
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+    def category_params
+      params.expect(category: [ :name ])
+    end
 end

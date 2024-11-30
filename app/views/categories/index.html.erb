@@ -2,9 +2,22 @@
 
 <%= button_to "+ New category", new_user_category_path, class: "new", method: :get %>
 
+<!-- Generate table -->
+<table>
 <% @categories.each do |category| %>
-  <div>
-    <%= category.name %>
-    <%= link_to "Edit", edit_user_category_path(@user,category.id) %>
-  </div>
+  <tr>
+    <td>
+      <%= category.name %>
+    </td>
+    <td>
+      <%= link_to "Edit", edit_user_category_path(@user,category.id) %>
+    </td>
+    <td>
+      <%= link_to "Delete", user_category_path(@user,category.id), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %>
+    </td>
+  </tr>
 <% end %>
+</table>

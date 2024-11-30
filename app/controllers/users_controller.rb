@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def home
+    # Work in progress, just redirects the user
     if session[:user_id].nil?
       redirect_to login_path
     else
@@ -9,11 +10,12 @@ class UsersController < ApplicationController
   end
 
   def new
+    # For the sign_up path
     @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(sign_up_params)
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path
@@ -32,21 +34,20 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      redirect_to "/sign_up"
+      redirect_to sign_up_path
     end
   end
   def logout
     session[:user_id] = nil
-    redirect_to "/"
+    redirect_to root_path
   end
 
   private
-  def user_params
-    params.expect(user: [ :username, :password, :email ])
-  end
+    def sign_up_params
+      params.expect(user: [ :username, :password, :email ])
+    end
 
-  private
-  def login_params
-    params.expect(user: [ :password, :email ])
-  end
+    def login_params
+      params.expect(user: [ :password, :email ])
+    end
 end

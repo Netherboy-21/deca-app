@@ -8,3 +8,46 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+body {
+    margin: 0;
+}
+header {
+    height: 30px;
+    background-color: #ffbc1d;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}
+#content {
+    margin: 5px;
+}
+.nav-link {
+    text-align: center;
+    color: white;
+}
+.new {
+    background: dodgerblue;
+    color: white;
+    font-size: medium;
+    border-radius: 5px;
+}
+body {
+    background: #ffeedd;
+}
+#login {
+    background: rgba(255, 238, 221, 0.7);
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+}
+* {
+    font-family: sans-serif;
+}
+h1, label{
+    display: inline-block;
+}
+div {
+    display: block;
+
+}
