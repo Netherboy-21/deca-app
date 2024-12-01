@@ -1,9 +1,18 @@
 # To do
-- Fix log in
-  - Use form builder for it
-- When renaming a category, update every transaction
-- Validate *all* user input
-- Generate user with initial balance
-- Generate user with "unsorted" category
-- Add home page
-- Style pages
+- [ ] **Make a dashboard**
+  - High level
+  - Across all accounts
+  - Up or down x% from last [time period]
+- [ ] More information on report page
+  - Deep dive
+  - Split by account
+  - Filter by category, time period, and account
+- [ ] When renaming a category, update every transaction
+- [ ] Validate *all* user input
+- [ ] Generate account with initial balance
+- [x] Generate user with "unsorted" category
+- [ ] Add home page
+- [ ] Search & filter options for transactions
+- [ ] Split transactions into accounts
+- [ ] Write the readme
+- [ ] Style pages

@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(sign_up_params)
     if @user.save
       session[:user_id] = @user.id
+      @user.categories.build(name: "Unsorted").save
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity

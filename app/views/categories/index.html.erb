@@ -2,7 +2,9 @@
 
 <%= button_to "+ New category", new_category_path, class: "new", method: :get %>
 
-<!-- Generate table -->
+<h3>Your categories</h3>
+
+<!-- Dynamically generate table -->
 <table>
 <% @categories.each do |category| %>
   <tr>
