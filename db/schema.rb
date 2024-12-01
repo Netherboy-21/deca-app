@@ -10,18 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_28_184229) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_01_031241) do
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.float "initial_balance"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
   create_table "app_transactions", force: :cascade do |t|
     t.float "amount"
     t.string "category"
     t.datetime "date"
-    t.integer "user_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "summary"
     t.text "details"
     t.boolean "is_income"
-    t.index ["user_id"], name: "index_app_transactions_on_user_id"
+    t.index ["account_id"], name: "index_app_transactions_on_account_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -40,6 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_28_184229) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "app_transactions", "users"
+  add_foreign_key "accounts", "users"
+  add_foreign_key "app_transactions", "users", column: "account_id"
   add_foreign_key "categories", "users"
 end

@@ -3,8 +3,11 @@ Rails.application.routes.draw do
   root "users#home"
 
   resources :users
-  resources :app_transactions
   resources :categories
+
+  resources :accounts do
+    resources :app_transactions
+  end
 
   get "/report", to: "app_transactions#report"
 
