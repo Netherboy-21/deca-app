@@ -7,10 +7,10 @@
 <!-- Generate CRUD links -->
 <ul>
   <li>
-    <%= link_to "Edit", edit_app_transaction_path(@transaction) %>
+    <%= link_to "Edit", edit_account_app_transaction_path(@transaction) %>
   </li>
   <li>
-    <%= link_to "Delete", @transaction, data: {
+    <%= link_to "Delete", [ @account, @transaction ], data: {
       turbo_method: :delete,
       turbo_confirm: "Are you sure?"
     } %>

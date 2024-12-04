@@ -6,28 +6,33 @@ class AppTransactionsController < ApplicationController
     end
     # Get balance
     @user = User.find(session[:user_id])
-    @transactions = AppTransaction.where(user: session[:user_id]).order(date: :desc)
+    @account = Account.find(params[:account_id])
+    @transactions = @account.app_transactions.order(date: :desc)
     @balance = @transactions.where(is_income: true).sum(:amount) - @transactions.where(is_income: false).sum(:amount)
   end
 
   def index
     # Get db information
     @user = User.find(session[:user_id])
-    @transactions = AppTransaction.where(user: session[:user_id]).order(date: :desc)
+    @account = Account.find(params[:account_id])
+    @transactions = @account.app_transactions
     @categories = Category.where(user: @user).exists? ? Category.where(user: @user) : []
   end
 
   def new
     @user = User.find(session[:user_id])
     @categories = Category.where(user: @user).exists? ? Category.where(user: @user) : []
-    @transaction = @user.app_transactions.build
+    @account = Account.find(params[:account_id])
+    @transaction = @account.app_transactions.build
   end
 
   def create
     @user = User.find(session[:user_id])
-    @app_transaction = @user.app_transactions.new(transaction_params_with_user_id)
-    if @app_transaction.save
-      redirect_to app_transactions_path
+    @account = @user.accounts.find(params[:account_id])
+    @transaction = @account.app_transactions.build(transaction_params)
+
+    if @transaction.save
+      redirect_to account_app_transactions_path @account
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,16 +40,18 @@ class AppTransactionsController < ApplicationController
 
   def edit
     @user = User.find(session[:user_id])
-    @transaction = @user.app_transactions.find(params[:id])
-    @categories = @user.categories.where(user: @user)
+    @categories = Category.where(user: @user).exists? ? Category.where(user: @user) : []
+    @account = Account.find(params[:account_id])
+    @transaction = AppTransaction.find(params[:id])
   end
 
   def update
     @user = User.find(session[:user_id])
-    @transaction = @user.app_transactions.find(params[:id])
+    @account = Account.find(params[:account_id])
+    @transaction = @account.app_transactions.find(params[:id])
 
-    if @transaction.update(transaction_params_with_user_id)
-      redirect_to app_transactions_path
+    if @transaction.update(transaction_params)
+      redirect_to account_app_transactions_path @account
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,20 +59,19 @@ class AppTransactionsController < ApplicationController
 
   def destroy
     @user = User.find(session[:user_id])
-    @transaction = @user.app_transactions.find(params[:id])
+    @account = Account.find(params[:account_id])
+    @transaction = @account.app_transactions.find(params[:id])
     @transaction.destroy
-    redirect_to app_transactions_path
+    redirect_to account_app_transactions_path @account
   end
 
   def show
+    @account = Account.find(params[:account_id])
     @transaction = AppTransaction.find(params[:id])
   end
 
   private
-    def transaction_params # Data received from the form
-      params.expect(app_transaction: [ :amount, :category, :date, :summary, :details, :is_income  ])
-    end
-    def transaction_params_with_user_id # Data from form with the user id
-      transaction_params.merge(user_id: session[:user_id])
+    def transaction_params
+      params.expect(app_transaction: [ :amount, :category, :date, :summary, :details, :is_income ])
     end
 end

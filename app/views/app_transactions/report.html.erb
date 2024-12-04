@@ -6,7 +6,7 @@
 <% if @transactions == [] %>
   <!-- Only display this is there aren't any transactions-->
   <h3>You haven't logged any transactions!</h3>
-  <%= link_to "Log a transaction", new_app_transaction_path %>
+  <%= link_to "Log a transaction", new_account_app_transaction_path(@account) %>
 <%  else %>
   <!--Use Chartkick for graphs-->
   <h3>Balance over time</h3>

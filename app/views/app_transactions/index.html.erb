@@ -1,6 +1,6 @@
 <h1>Transactions</h1><br>
 
-<%= button_to "+ New transaction", new_app_transaction_path, class: "new", method: :get%>
+<%= button_to "+ New transaction", new_account_app_transaction_path(@account), class: "new", method: :get%>
 
 <%= stylesheet_link_tag 'transactions' %>
 
@@ -20,7 +20,7 @@
         <%= transaction.date.strftime("%F") %>
       </td>
       <td>
-        <%= link_to transaction.summary, transaction %>
+        <%= link_to transaction.summary, [ @account, transaction ] %>
       </td>
       <td>
         <%= ( transaction.is_income ? "$" : "-$" ) + transaction.amount.to_s %>

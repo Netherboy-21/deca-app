@@ -1,6 +1,6 @@
 <!-- Form partial for creating and editing transactions -->
 
-<%= form_with model: @transaction, local: true do |form| %>
+<%= form_with model: [ @account, @transaction ], local: true do |form| %>
   <div>
     <%= form.label :summary %><br>
     <%= form.text_field :summary %>

@@ -9,7 +9,7 @@
   - Filter by category, time period, and account
 - [ ] When renaming a category, update every transaction
 - [ ] Validate *all* user input
-- [ ] Generate account with initial balance
+- [x] Generate account with initial balance
 - [x] Generate user with "unsorted" category
 - [ ] Add home page
 - [ ] Search & filter options for transactions

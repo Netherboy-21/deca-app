@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     if session[:user_id].nil?
       redirect_to login_path
     else
-      redirect_to app_transactions_path
+      redirect_to accounts_path
     end
   end
 

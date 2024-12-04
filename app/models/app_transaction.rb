@@ -1,7 +1,7 @@
 class AppTransaction < ApplicationRecord
-  belongs_to :user
+  belongs_to :account
 
-  validates :user_id, presence: true
   validates :amount, presence: true
   validates_numericality_of :amount, greater_than: 0
+  validates_numericality_of :amount, digits: 2
 end

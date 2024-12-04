@@ -1,0 +1,30 @@
+<h1>Accounts</h1>
+
+<% if @accounts == [] %>
+
+  <h3>You don't have any accounts!</h3>
+  <%= link_to "Create an account", new_account_path %>
+
+<% else %>
+
+  <%= button_to "+ New Account", new_account_path, class: "new", method: :get %>
+  <%= @balances %>
+
+  <h3>Your accounts</h3>
+
+  <table>
+    <th>Name</th>
+    <th>Balance</th>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td>
+          <%= link_to account.name, account %>
+        </td>
+        <td>
+          <%= @balances[0][account.name] %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>

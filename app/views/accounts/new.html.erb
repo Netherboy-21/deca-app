@@ -1,0 +1,19 @@
+<h1>New account</h1>
+
+<%= form_with model: @account do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :type %><br>
+    <%= form.select :type, %w[Checking Savings] %>
+  </div>
+  <div>
+    <%= form.label :initial_balance %><br>
+    <%= form.number_field :initial_balance, step: 0.01  %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
