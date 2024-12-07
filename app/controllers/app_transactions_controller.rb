@@ -8,7 +8,7 @@ class AppTransactionsController < ApplicationController
     @user = User.find(session[:user_id])
     @account = Account.find(params[:account_id])
     @transactions = @account.app_transactions.order(date: :desc)
-    @balance = @transactions.where(is_income: true).sum(:amount) - @transactions.where(is_income: false).sum(:amount)
+    @balance = @transactions.where(is_income: true).sum(:amount) - @transactions.where(is_income: false).sum(:amount) + @account.initial_balance
   end
 
   def index

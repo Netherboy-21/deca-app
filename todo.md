@@ -13,6 +13,6 @@
 - [x] Generate user with "unsorted" category
 - [ ] Add home page
 - [ ] Search & filter options for transactions
-- [ ] Split transactions into accounts
+- [x] Split transactions into accounts
 - [ ] Write the readme
 - [ ] Style pages

@@ -6,7 +6,8 @@ class AccountsController < ApplicationController
     # Generate balances across accounts
     @balances = []
     @accounts.each do |account|
-      @balances.push({ account.name => account.app_transactions.sum(:amount) + account.initial_balance })
+      @transactions_sum = account.app_transactions.where(is_income: true).sum(:amount) - account.app_transactions.where(is_income: false).sum(:amount)
+      @balances.push({ account.name => @transactions_sum + account.initial_balance })
     end
   end
 

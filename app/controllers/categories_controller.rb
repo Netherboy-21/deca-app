@@ -5,12 +5,12 @@ class CategoriesController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
+    @user = User.find(session[:user_id])
     @category = @user.categories.build
   end
 
   def create
-    @user = User.find(params[:user_id])
+    @user = User.find(session[:user_id])
     @category = @user.categories.new(category_params_with_user_id)
     if @category.save
       redirect_to categories_path

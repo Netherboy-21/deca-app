@@ -7,7 +7,7 @@
 <!-- Generate CRUD links -->
 <ul>
   <li>
-    <%= link_to "Edit", edit_account_app_transaction_path(@transaction) %>
+    <%= link_to "Edit", edit_account_app_transaction_path(@account,@transaction) %>
   </li>
   <li>
     <%= link_to "Delete", [ @account, @transaction ], data: {
