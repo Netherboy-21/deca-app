@@ -1,10 +1,12 @@
 <h1>Transactions</h1><br>
 
-<%= button_to "+ New transaction", new_account_app_transaction_path(@account), class: "new", method: :get%>
+<%= button_to "+ New transaction", new_account_app_transaction_path(@account), class: "new", method: :get%><br>
 
-<h3>Recent transactions</h3>
 <%= link_to "View report for this account", account_report_path(@account) %><br>
 
+<h3>Recent transactions</h3>
+
+<!-- Search UI -->
 <input type="text" placeholder="Search for transaction" value="" id="name-search">
 <select id="category-search">
   <!-- Default/no filter option -->
@@ -19,6 +21,7 @@
   <% end %>
 </select>
 
+<!-- Transaction table -->
 <table id="transactions">
   <!--Column headers-->
   <th>Date</th>
@@ -44,49 +47,3 @@
     </tr>
   <% end %>
 </table>
-
-<!-- Search functionality -->
-<script>
-    function searchRows() {
-        // Declare variables
-        let ninput, nfilter, cinput, cfilter, table, tr, ntd, ctd, i, ntxtValue, ctxtValue;
-        ninput = document.getElementById("name-search");
-        nfilter = ninput.value.toUpperCase();
-        cinput = document.getElementById("category-search");
-        cfilter = cinput.value.toUpperCase();
-        table = document.getElementById("transactions");
-        tr = table.getElementsByTagName("tr");
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            ntd = tr[i].getElementsByTagName("td")[1];
-            ctd = tr[i].getElementsByTagName("td")[3];
-            if (ntd) {
-                ntxtValue = ntd.textContent || ntd.innerText;
-                ctxtValue = (ctd.textContent || ctd.innerText).trim()
-                if (ntxtValue.toUpperCase().indexOf(nfilter) > -1 && ((ctxtValue.toUpperCase().indexOf(cfilter) > -1 && ctxtValue.length === cfilter.length) || cfilter === "NOFILTER")) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-
-    if(typeof(String.prototype.trim) === "undefined")
-    {
-        String.prototype.trim = function()
-        {
-            return String(this).replace(/^\s+|\s+$/g, '');
-        };
-    }
-
-    $('#name-search').on('keyup',() => {
-        $('tr').css('display','table-row');
-        searchRows();
-    })
-
-    $('#category-search').on("change",() => {
-        $('tr').css('display','table-row');
-        searchRows();
-    })
-</script>

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Deca App" %></title>
+    <title><%= content_for(:title) || "Not Quickbooks" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="turbo-prefetch" content="false">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
     <%= csrf_meta_tags %>
@@ -28,10 +29,10 @@
 
   <body>
 
+  <!-- Header for each page -->
   <header>
 
     <% if session[:user_id].nil? %>
-      <%= link_to "Home", root_path, class: "nav-link" %>
       <%= link_to "Log in", login_path, class: "nav-link" %>
       <%= link_to "Sign up", sign_up_path, class: "nav-link" %>
     <% else %>

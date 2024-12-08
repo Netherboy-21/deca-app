@@ -1,8 +1,10 @@
-td,th {
+/* Styles specifically for the transactions page */
+
+#transactions td, #transactions th {
   border: 1px solid black;
   margin: 2px;
   padding: 1px;
 }
-table {
+#transactions {
   border: 1px solid black;
 }
