@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root "users#home"
 
   resources :users
@@ -17,10 +16,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-
-
-
 
   get "/login", to: "users#login_get"
   post "/login", to: "users#login_post"
