@@ -39,7 +39,7 @@
         <%= link_to transaction.summary, [ @account, transaction ] %>
       </td>
       <td>
-        <%= ( transaction.is_income ? "$" : "-$" ) + transaction.amount.to_s %>
+        <%= ( transaction.is_income ? "$" : "-$" ) + "%.2f" % transaction.amount.to_s %>
       </td>
       <td>
         <%= transaction.category %>
