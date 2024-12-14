@@ -20,7 +20,7 @@
           <%= link_to account.name, account %>
         </td>
         <td>
-          $<%= "%.2f" % @balances[0][account.name] %>
+          $<%= "%.2f" % @balances[account.name] %>
         </td>
       </tr>
     <% end %>

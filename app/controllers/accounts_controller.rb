@@ -4,10 +4,10 @@ class AccountsController < ApplicationController
     @accounts = @user.accounts
 
     # Generate balances across accounts
-    @balances = []
+    @balances = {}
     @accounts.each do |account|
       @transactions_sum = account.app_transactions.where(is_income: true).sum(:amount) - account.app_transactions.where(is_income: false).sum(:amount)
-      @balances.push({ account.name => @transactions_sum + account.initial_balance })
+      @balances.merge!({ account.name => @transactions_sum + account.initial_balance })
     end
   end
 
