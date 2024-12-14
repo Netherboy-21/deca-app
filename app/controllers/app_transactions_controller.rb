@@ -21,6 +21,7 @@ class AppTransactionsController < ApplicationController
   end
 
   def new
+    # Prepare model for new page
     @user = User.find(session[:user_id])
     @categories = Category.where(user: @user).exists? ? Category.where(user: @user) : []
     @account = Account.find(params[:account_id])
@@ -28,10 +29,12 @@ class AppTransactionsController < ApplicationController
   end
 
   def create
+    # Get post request
     @user = User.find(session[:user_id])
     @account = @user.accounts.find(params[:account_id])
     @transaction = @account.app_transactions.build(transaction_params)
 
+    # Add transaction to database
     if @transaction.save
       redirect_to account_app_transactions_path @account
     else
