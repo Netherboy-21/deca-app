@@ -23,6 +23,7 @@ function searchRows() {
     }
 }
 
+// Add trim method to String class
 if(typeof(String.prototype.trim) === "undefined")
 {
     String.prototype.trim = function()
@@ -31,6 +32,7 @@ if(typeof(String.prototype.trim) === "undefined")
     };
 }
 
+// Add event listeners
 $('#name-search').on('keyup',() => {
     $('tr').css('display','table-row');
     searchRows();
