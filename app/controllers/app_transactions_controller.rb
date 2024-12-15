@@ -16,7 +16,7 @@ class AppTransactionsController < ApplicationController
     # Get db information
     @user = User.find(session[:user_id])
     @account = Account.find(params[:account_id])
-    @transactions = @account.app_transactions
+    @transactions = @account.app_transactions.order(:date)
     @categories = Category.where(user: @user).exists? ? Category.where(user: @user) : []
   end
 
